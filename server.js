@@ -7,11 +7,13 @@ const server = express();
 server.use(express.json());
 server.use(cors());
 
-const sendUserError = (msg, res) => {
-  res.status(422);
-  res.json({ Error: msg });
-  return;
-};
+const token = 'eyJ1c2VySWQiOiJiMDhmODZhZi0zNWRhLTQ4ZjItOGZhYi1jZWYzOTA0NjYwYmQifQ';
+
+// const sendUserError = (msg, res) => {
+//   res.status(422);
+//   res.json({ Error: msg });
+//   return;
+// };
 
 let allSongs = songs.songs();
 // console.log(allSongs);
@@ -19,6 +21,21 @@ server.get('/songs', (req, res) => {
   res.json(allSongs);
 });
 let songId = 1;
+
+server.post('/login', (req, res) => {
+  console.log('request body', req.body)
+  const { username, password } = req.body;
+  if (username === 'spottyconnection' && password === 'spotify4ever') {
+    req.loggedIn = true;
+    res.status(200).json({
+      payload: token
+    });
+  } else {
+    res
+      .status(403)
+      .json({ error: 'Username or Password incorrect. Please see Readme' });
+  }
+});
 
 // server.post('/smurfs', (req, res) => {
 //   const { name, age, height } = req.body;
