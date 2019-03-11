@@ -2,6 +2,7 @@ body {
     color: #333;
     font-family: "Proxima Nova", Arial, sans-serif;
     font-weight: 200;
+    background-color: #333;
   }
   
   .example {
@@ -30,6 +31,8 @@ body {
   .item {
     padding: 2px 6px;
     cursor: default;
+    color: #333;
+    background-color: #ffffff;
   }
   
   .item-highlighted {
@@ -41,4 +44,9 @@ body {
     background-color: #ffffff;
     color: #454545;
     font-weight: bold;
+  }
+
+  .searchTitle {
+      color: #ffffff;
+      padding-top: 100px;
   }

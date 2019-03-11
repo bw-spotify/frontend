@@ -1,14 +1,16 @@
 export function getSongs() {
     return [
-      { artist_name: 'Juice WRLD', track_name: 'Robbery' },
-      { artist_name: 'Post Malone', track_name: 'Better Now' },
-      { artist_name: 'Eminem', track_name: "Not Alike (feat. Royce Da 5'9" },
+      { track_name: 'Juice WRLD - Robbery' },
+      { track_name: 'Post Malone - Better Now' },
+      { track_name: "Eminem - Not Alike (feat. Royce Da 5'9)" },
+      { track_name: 'Juice WRLD - Wasted (feat. Lil Uzi Vert)' },
+      { track_name: 'Juice WRLD - Fine China' },
+      { track_name: 'Post Malone - White Iverson' },
     ];
   }
   
 export function matchSongs(state, value) {
     return (
-      state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1 ||
-      state.artist_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+      state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
     );
 }
