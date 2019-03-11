@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchAllSongs } from './actions'
-import SongList from './components/SongList'
-import LoginForm from './components/LoginForm'
+// import SongList from './components/SongList'
+// import LoginForm from './components/LoginForm'
 import Search from './components/Search'
 
 class App extends Component {

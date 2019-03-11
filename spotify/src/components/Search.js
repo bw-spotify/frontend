@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
+import Song from './Song';
 import { getSongs, matchSongs } from '../data';
 import './Search.css';
 
@@ -10,6 +11,7 @@ class Search extends Component {
     };
 
   render() {
+    console.log(this.state.value)
     return (
         <div>
             <h2 className="searchTitle">Search by Artist or Track Name</h2>
@@ -36,6 +38,7 @@ class Search extends Component {
                     </div>
                 )}
                 />
+                <Song trackInfo={this.state.value}/>
             </div>
         </div>
       );
