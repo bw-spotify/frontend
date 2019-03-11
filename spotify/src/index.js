@@ -10,10 +10,18 @@ import logger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
+import { LOGIN_SUCCESS } from './actions'
+
+const addTokenToLocalStorage = store => next => action => {
+  if(action.type === LOGIN_SUCCESS) {
+    localStorage.setItem('userToken', action.payload.token);
+  }
+  next(action);
+};
 
 const store = createStore(
-  rootReducer, // this is the most basic reducer. A function that returns and object. Replace it.
-  applyMiddleware(thunk, logger)
+  rootReducer,
+  applyMiddleware(addTokenToLocalStorage, thunk, logger)
 );
 
 ReactDOM.render(

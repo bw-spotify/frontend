@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchAllSongs } from './actions'
+import { fetchAllSongs, login } from './actions'
 import SongList from './components/SongList'
 import LoginForm from './components/LoginForm'
 
@@ -14,8 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoginForm />
-        {/* <SongList songs={this.props.songs} /> */}
+        {this.props.loggedIn ? <SongList songs={this.props.songs} /> : <LoginForm login={this.props.login} error={this.props.error ? true : false} />}
       </div>
     );
   }
@@ -23,10 +22,12 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
+    loggingIn: state.loggingIn,
+    loggedIn: state.loggedIn,
     songs: state.songs,
     fetchingAllSongs: state.fetchingAllSongs,
     error: state.error
   }
 }
 
-export default connect(mapStateToProps, { fetchAllSongs })(App)
+export default connect(mapStateToProps, { fetchAllSongs, login })(App)
