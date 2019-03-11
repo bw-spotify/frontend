@@ -14,7 +14,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.props.loggedIn ? <SongList songs={this.props.songs} /> : <LoginForm login={this.props.login} error={this.props.error ? true : false} />}
+        {this.props.loggedIn ? (this.props.fetchingAllSongs ? <p>Loading</p> : <SongList songs={this.props.songs} />) : <LoginForm login={this.props.login} error={this.props.error ? true : false} />}
       </div>
     );
   }

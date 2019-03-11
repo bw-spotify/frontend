@@ -1,4 +1,5 @@
 import axios from 'axios';
+import axiosWithAuth from '../axiosAuth'
 
 export const LOGGING_IN = 'LOGGING_IN';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
@@ -12,7 +13,7 @@ export const login = (user, pass) => dispatch => {
   dispatch({
     type: LOGGING_IN
   })
-  axios.post('http://localhost:3333/login', {username: user, password: pass})
+  axios.post('https://bw-spotify-backend.herokuapp.com/api/register', {username: user, password: pass})
   .then(res => {
     dispatch({
       type: LOGIN_SUCCESS,
@@ -33,7 +34,7 @@ export const fetchAllSongs = () => dispatch => {
   dispatch({
     type: FETCH_ALL_SONGS
   });
-  axios.get('http://localhost:3333/songs')
+  axiosWithAuth().get('https://bw-spotify-backend.herokuapp.com/api/songs')
   .then(res => {
     dispatch({
       type: SUCCESS,
