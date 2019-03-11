@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchAllSongs } from './actions'
 import SongList from './components/SongList'
 import LoginForm from './components/LoginForm'
+import Search from './components/Search'
 
 class App extends Component {
 
@@ -14,8 +15,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <LoginForm />
+        {/* <LoginForm /> */}
         {/* <SongList songs={this.props.songs} /> */}
+        <Search />
       </div>
     );
   }
