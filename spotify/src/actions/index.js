@@ -1,15 +1,22 @@
-import axios from 'axios';
+import axios from 'axios'
 import axiosWithAuth from '../axiosAuth'
 
-export const LOGGING_IN = 'LOGGING_IN';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-export const REGISTERING = 'REGISTERING';
-export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-export const REGISTER_FAILURE = 'REGISTER_FAILURE';
-export const FETCHING_SONGS = 'FETCHING_SONGS';
-export const FETCH_SUCCESS = 'FETCH_SUCCESS';
-export const FETCH_FAILURE = 'FAILURE';
+export const LOGGING_IN = 'LOGGING_IN'
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
+export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+export const REGISTERING = 'REGISTERING'
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
+export const REGISTER_FAILURE = 'REGISTER_FAILURE'
+export const FETCHING_SONGS = 'FETCHING_SONGS'
+export const FETCH_SUCCESS = 'FETCH_SUCCESS'
+export const FETCH_FAILURE = 'FAILURE'
+export const LOGOUT = 'LOGOUT'
+
+export const logout = () => dispatch => {
+  dispatch({
+    type: LOGOUT
+  })
+}
 
 export const login = (user, pass) => dispatch => {
   console.log('logging in', user, pass)

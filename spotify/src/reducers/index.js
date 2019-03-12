@@ -8,6 +8,7 @@ import {
   FETCHING_SONGS,
   FETCH_SUCCESS,
   FETCH_FAILURE,
+  LOGOUT
 } from "../actions";
 
 const initialState = {
@@ -21,6 +22,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOGOUT:
+      return {
+        ...state,
+        loggedIn: false
+      }
     case LOGGING_IN:
       return {
         ...state,

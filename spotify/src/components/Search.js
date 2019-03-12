@@ -22,7 +22,6 @@ class Search extends Component {
   }
 
   render() {
-    console.log('props', this.props)
     return (
         <div>
             <h2 className="searchTitle">Search by Artist or Track Name</h2>
