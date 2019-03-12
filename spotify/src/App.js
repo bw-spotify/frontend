@@ -1,22 +1,21 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchAllSongs, login } from './actions'
-import SongList from './components/SongList'
+import { fetchAllSongs, login, register } from './actions'
+import { Route, Redirect, withRouter } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
+import RegisterForm from './components/RegisterForm'
+import ProtectedRoute from './components/ProtectedRoute'
 import Search from './components/Search'
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.fetchAllSongs()
-  }
-
   render() {
     return (
       <div className="App">
-        {this.props.loggedIn ? (this.props.fetchingAllSongs ? <p>Loading</p> : <SongList songs={this.props.songs} />) : <LoginForm login={this.props.login} error={this.props.error ? true : false} />}
-        <Search songs={this.props.songs}/>
+        <ProtectedRoute exact path="/" component={Search} />} />
+        <Route path="/login" render={() => ( this.props.loggedIn ? <Redirect to="/"/> : <LoginForm login={this.props.login} /> )} />
+        <Route path="/register" render={() => ( this.props.loggedIn ? <Redirect to="/"/> : <RegisterForm register={this.props.register} /> )} />
       </div>
     );
   }
@@ -32,4 +31,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, { fetchAllSongs, login })(App)
+export default withRouter(connect(mapStateToProps, { fetchAllSongs, login, register })(App))

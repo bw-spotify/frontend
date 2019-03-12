@@ -7,39 +7,28 @@ class RegisterForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      confirm: ''
+      confirm: '',
+      passwordMismatch: false
     }
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
   handleSubmit = () => {
-    this.props.login(this.state.username, this.state.password)
+    this.props.register(this.state.username, this.state.password)
   }
 
   render() {
     return (
-      <div className='login-form'>
-        {/*
-          Heads up! The styles below are necessary for the correct render of this example.
-          You can do same with CSS, the main idea is that all the elements up to the `Grid`
-          below must have a height of 100%.
-        */}
-        <style>{`
-          body > div,
-          body > div > div,
-          body > div > div > div.login-form {
-            height: 100%;
-          }
-        `}</style>
+      <div className='register-form'>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 500 }}>
-            <Header as='h2' color='teal' textAlign='center'>
-              <Icon name='music' /> Log-in to your account
+            <Header as='h2' color='green' textAlign='center'>
+              <Icon name='music' /> Register your account
             </Header>
             <Form error={this.props.error} size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
-                  label='Choose a username'
+                  // label='Choose a username'
                   fluid
                   icon='user'
                   iconPosition='left'
@@ -48,7 +37,7 @@ class RegisterForm extends React.Component {
                   name='username'
                   value={this.state.username} />
                 <Form.Input
-                  label='Choose a password'
+                  // label='Choose a password'
                   fluid
                   icon='lock'
                   iconPosition='left'
@@ -59,7 +48,7 @@ class RegisterForm extends React.Component {
                   value={this.state.password}
                 />
                 <Form.Input
-                  label='Confirm password'
+                  // label='Confirm password'
                   fluid
                   icon='lock'
                   iconPosition='left'
@@ -74,14 +63,11 @@ class RegisterForm extends React.Component {
                   header='Username or password unrecognized'
                   content='We do not recognize that username/password combination, please try again'
                 />
-                <Button color='teal' fluid size='large' type='submit'>
-                  Login
+                <Button color='green' fluid size='large' type='submit'>
+                  Register
                 </Button>
               </Segment>
             </Form>
-            <Message>
-              New to us? <a href='#'>Sign Up</a>
-            </Message>
           </Grid.Column>
         </Grid>
       </div>

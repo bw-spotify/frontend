@@ -10,10 +10,10 @@ import logger from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
-import { LOGIN_SUCCESS } from './actions'
+import { LOGIN_SUCCESS, REGISTER_SUCCESS } from './actions'
 
 const addTokenToLocalStorage = store => next => action => {
-  if(action.type === LOGIN_SUCCESS) {
+  if(action.type === LOGIN_SUCCESS || action.type === REGISTER_SUCCESS) {
     localStorage.setItem('userToken', action.payload.token);
   }
   next(action);

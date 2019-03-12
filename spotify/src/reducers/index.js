@@ -1,6 +1,17 @@
-import { LOGGING_IN, LOGIN_SUCCESS, LOGIN_FAILURE, FETCH_ALL_SONGS, SUCCESS, FAILURE } from "../actions";
+import {
+  LOGGING_IN,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  REGISTERING,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  FETCHING_SONGS,
+  FETCH_SUCCESS,
+  FETCH_FAILURE,
+} from "../actions";
 
 const initialState = {
+  registering: false,
   loggingIn: false,
   loggedIn: false,
   songs: [],
@@ -28,18 +39,36 @@ const rootReducer = (state = initialState, action) => {
         loggingIn: false,
         error: action.payload
       }
-    case FETCH_ALL_SONGS:
+      case REGISTERING:
+      return {
+        ...state,
+        registering: true
+      }
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        loggedIn: true,
+        registering: false,
+        error: null
+      }
+      case REGISTER_FAILURE:
+      return {
+        ...state,
+        registering: false,
+        error: action.payload
+      }
+    case FETCHING_SONGS:
       return {
         ...state,
         fetchingAllSongs: true
       }
-    case SUCCESS:
+    case FETCH_SUCCESS:
       return {
         ...state,
         songs: action.payload,
         fetchingAllSongs: false,
       }
-    case FAILURE:
+    case FETCH_FAILURE:
       return {
         ...state,
         fetchingAllSongs: false,
