@@ -14,6 +14,7 @@ class Song extends Component {
         <div>
             <p className="trackInfo">{this.props.trackInfo}</p>
             <div className="trackID">{ this.props.songsArray.map((song, i) => this.props.trackInfo === song.track_name ? (<p key={i}>Artist: {song.artist_name}</p>) : (null)) }</div>
+            <div className="trackID">{ this.props.songsArray.map((song, i) => this.props.trackInfo === song.track_name ? (<p key={i}>Track ID: {song.track_id}</p>) : (null)) }</div>
             <div className="trackID">{ this.props.songsArray.map((song, i) => this.props.trackInfo === song.track_name ? (<p key={i}>Acousticness: {song.acousticness}</p>) : (null)) }</div>
             <div className="trackID">{ this.props.songsArray.map((song, i) => this.props.trackInfo === song.track_name ? (<p key={i}>Danceability: {song.danceability}</p>) : (null)) }</div>
             <div className="trackID">{ this.props.songsArray.map((song, i) => this.props.trackInfo === song.track_name ? (<p key={i}>Duration in ms: {song.duration_ms}</p>) : (null)) }</div>
