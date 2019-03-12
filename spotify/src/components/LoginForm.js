@@ -1,6 +1,8 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
+import {connect} from 'react-redux'
+import {login} from '../actions'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -12,6 +14,7 @@ class LoginForm extends React.Component {
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
+  
   handleSubmit = () => {
     this.props.login(this.state.username, this.state.password)
   }
@@ -36,7 +39,7 @@ class LoginForm extends React.Component {
             <Header as='h2' color='green' textAlign='center'>
               <Icon name='music' /> Log-in to your account
             </Header>
-            <Form error={this.props.error} size='large' onSubmit={this.handleSubmit}>
+            <Form error={this.props.error ? true : false} size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   fluid icon='user'
@@ -74,5 +77,9 @@ class LoginForm extends React.Component {
     )
   }
 }
-
-export default LoginForm
+const mapStateToProps = state => {
+  return {
+    error: state.error
+  }
+}
+export default connect(mapStateToProps, {login})(LoginForm)

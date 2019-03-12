@@ -1,5 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
+import {connect} from 'react-redux'
+import {register} from '../actions'
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -13,8 +15,14 @@ class RegisterForm extends React.Component {
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
+
   handleSubmit = () => {
-    this.props.register(this.state.username, this.state.password)
+    if(this.state.password === this.state.confirm) {
+      this.props.register(this.state.username, this.state.password)
+    }
+    else {
+      this.setState({passwordMismatch: true})
+    }
   }
 
   render() {
@@ -25,7 +33,7 @@ class RegisterForm extends React.Component {
             <Header as='h2' color='green' textAlign='center'>
               <Icon name='music' /> Register your account
             </Header>
-            <Form error={this.props.error} size='large' onSubmit={this.handleSubmit}>
+            <Form error size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   // label='Choose a username'
@@ -58,11 +66,18 @@ class RegisterForm extends React.Component {
                   name='confirm'
                   value={this.state.confirm}
                 />
+                {this.props.error ?
                 <Message
                   error
                   header='Username or password unrecognized'
                   content='We do not recognize that username/password combination, please try again'
-                />
+                /> : ''}
+                {this.state.passwordMismatch ?
+                <Message
+                  error
+                  header='Passwords do not match'
+                  content='Please make sure to confirm that your passwords are the same'
+                /> : ''}
                 <Button color='green' fluid size='large' type='submit'>
                   Register
                 </Button>
@@ -75,4 +90,10 @@ class RegisterForm extends React.Component {
   }
 }
 
-export default RegisterForm
+const mapStateToProps = state => {
+  return {
+    error: state.error
+  }
+}
+
+export default connect(mapStateToProps, {register})(RegisterForm)
