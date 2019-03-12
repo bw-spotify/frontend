@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -32,7 +33,7 @@ class LoginForm extends React.Component {
         `}</style>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 500 }}>
-            <Header as='h2' color='teal' textAlign='center'>
+            <Header as='h2' color='green' textAlign='center'>
               <Icon name='music' /> Log-in to your account
             </Header>
             <Form error={this.props.error} size='large' onSubmit={this.handleSubmit}>
@@ -59,13 +60,13 @@ class LoginForm extends React.Component {
                   header='Username or password unrecognized'
                   content='We do not recognize that username/password combination, please try again'
                 />
-                <Button color='teal' fluid size='large' type='submit'>
+                <Button color='green' fluid size='large' type='submit'>
                   Login
                 </Button>
               </Segment>
             </Form>
             <Message>
-              New to us? <a href='#'>Sign Up</a>
+              New to us? <Link to="/register">Register</Link>
             </Message>
           </Grid.Column>
         </Grid>

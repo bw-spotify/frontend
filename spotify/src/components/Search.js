@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
 import Song from './Song';
 import './Search.css';
+import { connect } from 'react-redux'
+import { fetchAllSongs } from '../actions'
 
 class Search extends Component {
     constructor(props) {
@@ -11,12 +13,16 @@ class Search extends Component {
           };
     }
 
+    componentDidMount() {
+        this.props.fetchAllSongs()
+      }
+
     matchSongs(state, value) {
         return state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
   }
 
   render() {
-    console.log(this.props.songs)
+    console.log('props', this.props)
     return (
         <div>
             <h2 className="searchTitle">Search by Artist or Track Name</h2>
@@ -53,4 +59,10 @@ class Search extends Component {
     }
   }
 
-export default Search;
+  const mapStateToProps = state => {
+    return {
+      songs: state.songs,
+    }
+  }
+
+export default connect(mapStateToProps, { fetchAllSongs })(Search);
