@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
 import Song from './Song';
-import { getSongs, matchSongs } from '../data';
 import './Search.css';
 
 class Search extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: '' 
+          };
+    }
 
-  state = {
-      value: '' 
-    };
+    matchSongs(state, value) {
+        return state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+  }
 
   render() {
-    console.log(this.state.value)
+    console.log(this.props.songs)
     return (
         <div>
             <h2 className="searchTitle">Search by Artist or Track Name</h2>
@@ -20,9 +25,9 @@ class Search extends Component {
                 value={ this.state.value }
                 inputProps={{ id: 'states-autocomplete' }}
                 wrapperStyle={{ position: 'relative', display: 'inline-block' }}
-                items={ getSongs() }
+                items={this.props.songs}
                 getItemValue={ item => item.track_name }
-                shouldItemRender={ matchSongs }
+                shouldItemRender={ this.matchSongs }
                 onChange={(event, value) => this.setState({ value }) }
                 onSelect={ value => this.setState({ value }) }
                 renderMenu={ children => (
@@ -38,7 +43,10 @@ class Search extends Component {
                     </div>
                 )}
                 />
-                <Song trackInfo={this.state.value}/>
+                <Song
+                    trackInfo={this.state.value}
+                    songsArray={this.props.songs}
+                />
             </div>
         </div>
       );
