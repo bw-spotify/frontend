@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { fetchAllSongs, login } from './actions'
 import SongList from './components/SongList'
 import LoginForm from './components/LoginForm'
+import Search from './components/Search'
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.props.loggedIn ? (this.props.fetchingAllSongs ? <p>Loading</p> : <SongList songs={this.props.songs} />) : <LoginForm login={this.props.login} error={this.props.error ? true : false} />}
+        <Search songs={this.props.songs}/>
       </div>
     );
   }
