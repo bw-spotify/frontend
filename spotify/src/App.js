@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
-import { fetchAllSongs, login, register } from './actions'
+import { fetchAllSongs, login, register, logout } from './actions'
 import { Route, Redirect, withRouter } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import ProtectedRoute from './components/ProtectedRoute'
 import Search from './components/Search'
+import NavBar from './components/NavBar'
 
 class App extends Component {
 
   render() {
     return (
       <div className="App">
+        <NavBar loggedIn={this.props.loggedIn} logout={this.props.logout} />
         <ProtectedRoute exact path="/" component={Search} />} />
         <Route path="/login" render={() => ( this.props.loggedIn ? <Redirect to="/"/> : <LoginForm login={this.props.login} /> )} />
         <Route path="/register" render={() => ( this.props.loggedIn ? <Redirect to="/"/> : <RegisterForm register={this.props.register} /> )} />
@@ -31,4 +33,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, { fetchAllSongs, login, register })(App))
+export default withRouter(connect(mapStateToProps, { fetchAllSongs, login, register, logout })(App))
