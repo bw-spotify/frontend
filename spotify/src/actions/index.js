@@ -1,6 +1,7 @@
 import axios from 'axios'
 import axiosWithAuth from '../axiosAuth'
 
+export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const LOGGING_IN = 'LOGGING_IN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
 export const LOGIN_FAILURE = 'LOGIN_FAILURE'
@@ -11,6 +12,12 @@ export const FETCHING_SONGS = 'FETCHING_SONGS'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAILURE = 'FAILURE'
 export const LOGOUT = 'LOGOUT'
+
+export const clearErrors = () => dispatch => {
+  dispatch({
+    type: CLEAR_ERRORS
+  })
+}
 
 export const logout = () => dispatch => {
   dispatch({

@@ -1,4 +1,5 @@
 import {
+  CLEAR_ERRORS,
   LOGGING_IN,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
@@ -22,6 +23,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null
+      }
     case LOGOUT:
       return {
         ...state,
@@ -30,7 +36,8 @@ const rootReducer = (state = initialState, action) => {
     case LOGGING_IN:
       return {
         ...state,
-        loggingIn: true
+        loggingIn: true,
+        error: null
       }
     case LOGIN_SUCCESS:
       return {
@@ -40,7 +47,6 @@ const rootReducer = (state = initialState, action) => {
         error: null
       }
       case LOGIN_FAILURE:
-      console.log(action.payload)
       return {
         ...state,
         loggingIn: false,
@@ -49,7 +55,8 @@ const rootReducer = (state = initialState, action) => {
       case REGISTERING:
       return {
         ...state,
-        registering: true
+        registering: true,
+        error: null
       }
     case REGISTER_SUCCESS:
       return {
@@ -59,7 +66,6 @@ const rootReducer = (state = initialState, action) => {
         error: null
       }
       case REGISTER_FAILURE:
-      console.log(action.payload)
       return {
         ...state,
         registering: false,

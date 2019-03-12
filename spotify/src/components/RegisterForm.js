@@ -1,7 +1,8 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {register} from '../actions'
+import {register, clearErrors} from '../actions'
+import {Link} from 'react-router-dom'
 
 class RegisterForm extends React.Component {
   constructor(props) {
@@ -21,6 +22,7 @@ class RegisterForm extends React.Component {
       this.props.register(this.state.username, this.state.password)
     }
     else {
+      this.props.clearErrors()
       this.setState({passwordMismatch: true})
     }
   }
@@ -69,8 +71,8 @@ class RegisterForm extends React.Component {
                 {this.props.error ?
                 <Message
                   error
-                  header='Username or password unrecognized'
-                  content='We do not recognize that username/password combination, please try again'
+                  header='That username already exists'
+                  content="If you have forgotten your password, we cannot help you with that yet :'( Otherwise, choose a different username, pls"
                 /> : ''}
                 {this.state.passwordMismatch ?
                 <Message
@@ -83,6 +85,9 @@ class RegisterForm extends React.Component {
                 </Button>
               </Segment>
             </Form>
+            <Message>
+              Already registered? <Link to="/login">Log in</Link>
+            </Message>
           </Grid.Column>
         </Grid>
       </div>
@@ -96,4 +101,4 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, {register})(RegisterForm)
+export default connect(mapStateToProps, {register, clearErrors})(RegisterForm)
