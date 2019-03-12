@@ -31,7 +31,7 @@ export const login = (user, pass) => dispatch => {
     })
   })
   .catch(err => {
-    console.log(err)
+    console.log('error', err)
     dispatch({
       type: LOGIN_FAILURE,
       payload: err
@@ -52,7 +52,7 @@ export const register = (user, pass) => dispatch => {
     })
   })
   .catch(err => {
-    console.log(err)
+    console.log('err', err)
     dispatch({
       type: REGISTER_FAILURE,
       payload: err

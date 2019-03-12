@@ -40,6 +40,7 @@ const rootReducer = (state = initialState, action) => {
         error: null
       }
       case LOGIN_FAILURE:
+      console.log(action.payload)
       return {
         ...state,
         loggingIn: false,
@@ -58,6 +59,7 @@ const rootReducer = (state = initialState, action) => {
         error: null
       }
       case REGISTER_FAILURE:
+      console.log(action.payload)
       return {
         ...state,
         registering: false,
