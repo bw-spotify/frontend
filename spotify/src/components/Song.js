@@ -37,7 +37,8 @@ class Song extends Component {
         song.mode,
         song.speechiness,
         song.time_signature,
-        song.valence
+        song.valence,
+        song.similars
       ]
       return songNum
     }
@@ -81,6 +82,15 @@ class Song extends Component {
 
   render() {
     const { song } = this.state;
+    console.log("tsss: ", this.state.song.similars)
+
+    let simSong = [];
+    if(this.state.song.similars) {
+        this.state.song.similars.forEach(s => {
+        simSong.push(<p>{s.track_name}</p>)
+      })
+    }
+    console.log("song stuff: ", song)
     return (
         <div>
           <div className="dataSong">
@@ -101,6 +111,10 @@ class Song extends Component {
             <div className="trackID"><p>Time Signature: {song.time_signature}</p></div>
             <div className="trackID"><p>Valence: {song.valence}</p></div>
             <div className="trackID"><p>Popularity: {song.popularity}</p></div>
+            <div className="similar">
+              <p>Similar Songs to {song.track_name}: </p>
+              {simSong}
+            </div>
           </div>
           <div className="musicChart">
             <Bar
