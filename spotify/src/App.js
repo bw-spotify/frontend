@@ -6,6 +6,7 @@ import { Route, Redirect, withRouter } from 'react-router-dom'
 import LoginForm from './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
 import ProtectedRoute from './components/ProtectedRoute'
+import Song from './components/Song'
 import Search from './components/Search'
 import NavBar from './components/NavBar'
 
@@ -16,7 +17,8 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar loggedIn={this.props.loggedIn} logout={this.props.logout} />
-        <ProtectedRoute exact path="/" component={Search} />} />
+        <ProtectedRoute exact path="/" component={Search} />
+        <ProtectedRoute path="/songs/:id" component={Song} />
         <Route path="/login" render={() => ( this.props.loggedIn ? <Redirect to="/" /> : <LoginForm /> )} />
         <Route path="/register" render={() => ( this.props.loggedIn ? <Redirect to="/" /> : <RegisterForm /> )} />
       </div>
