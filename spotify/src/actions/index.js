@@ -74,6 +74,7 @@ export const fetchAllSongs = () => dispatch => {
   });
   axiosWithAuth().get('https://bw-spotify-backend.herokuapp.com/api/songs')
   .then(res => {
+    console.log("res data here: ", res.data)
     dispatch({
       type: FETCH_SUCCESS,
       payload: res.data
