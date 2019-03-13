@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Search.css';
 import { Bar } from 'react-chartjs-2';
+import axiosWithAuth from '../axiosAuth'
 
 class Song extends Component {
     constructor(props) {
@@ -11,11 +12,17 @@ class Song extends Component {
         };
     }
 
-    componentDidUpdate(){
-      if (this.props.song !== this.state.song) {
-        console.log('component did update', this.props.song)
-        this.setState({song: this.props.song, chartData: this.getChartData(this.props.song)})
-      }
+    componentDidMount(){
+      axiosWithAuth().get(`https://bw-spotify-backend.herokuapp.com/api/songs?id=${this.props.match.params.id}`)
+      .then(res => {
+        this.setState({
+          song: res.data,
+          chartData: this.getChartData(res.data)
+        })
+      })
+      .catch(err => {
+        console.log('failed')
+      })
     }
 
     getSongData(song) {
@@ -73,9 +80,7 @@ class Song extends Component {
   }
 
   render() {
-    // const song = this.props.song; same as below
-    const { song } = this.props;
-
+    const { song } = this.state;
     return (
         <div>
           <div className="dataSong">

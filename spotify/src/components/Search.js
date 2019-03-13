@@ -4,6 +4,7 @@ import Song from './Song';
 import './Search.css';
 import { connect } from 'react-redux'
 import { fetchAllSongs } from '../actions'
+import {Link} from 'react-router-dom'
 
 class Search extends Component {
     constructor(props) {
@@ -52,15 +53,15 @@ class Search extends Component {
                 )}
                 renderItem={ (item, isHighlighted) => (
                     <div
-                    className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
-                    key={ item.track_name } >
-                    { item.track_name }
+                      className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
+                      key={ item.track_name } >
+                      <Link to={`/songs/${item.id}`}>{ item.track_name }</Link>
                     </div>
                 )}
                 />
-                <Song
+                {/* <Song
                     song={this.getSong()}
-                />
+                /> */}
             </div>
         </div>
       );
