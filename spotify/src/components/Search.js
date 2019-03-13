@@ -14,31 +14,16 @@ class Search extends Component {
           };
     }
 
-    componentDidMount() {
-        
-      }
-
   matchSongs(state, value) {
     return state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
   }
-  
-    // getSong() {
-    //     let song = {}
-    //     this.props.searchedSongs.forEach(s => {
-    //         if(s.track_name === this.state.value) {
-    //             song = s
-    //         }
-    //     })
-    //     return song
-    // }
 
   handleChange = (e, v) => {
+    e.preventDefault()
     this.setState({
       value: v
     })
-    if(v.length > 3) {
-      this.props.searchSongs(v)
-    }
+    this.props.searchSongs(v)
   }
 
   render() {
@@ -50,7 +35,7 @@ class Search extends Component {
                 value={ this.state.value }
                 inputProps={{ id: 'states-autocomplete' }}
                 wrapperStyle={{ position: 'relative', display: 'inline-block' }}
-                items={this.props.searchedSongs}
+                items={this.props.searchedSongs || []}
                 getItemValue={ item => item.track_name }
                 shouldItemRender={ this.matchSongs }
                 onChange={(event, value) => this.handleChange(event, value) }
@@ -61,11 +46,11 @@ class Search extends Component {
                     </div>
                 )}
                 renderItem={ (item, isHighlighted) => (
-                    <div
-                      className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
-                      key={ item.id } >
-                      <Link to={`/songs/${item.id}`}>{ item.track_name }</Link>
+                  <Link to={`/songs/${item.id}`}>
+                    <div className={`item ${isHighlighted ? 'item-highlighted' : ''}`} key={ item.id } >
+                      { item.track_name }
                     </div>
+                  </Link>
                 )}
                 />
                 {/* <Song
