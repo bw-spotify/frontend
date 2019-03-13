@@ -14,9 +14,18 @@ class Search extends Component {
     matchSongs(state, value) {
         return state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
   }
+  
+    getSong() {
+        let song = {}
+        this.props.songs.forEach(s => {
+            if(s.track_name === this.state.value) {
+                song = s
+            }
+        })
+        return song
+    }
 
   render() {
-    console.log(this.props.songs)
     return (
         <div>
             <h2 className="searchTitle">Search by Artist or Track Name</h2>
@@ -44,8 +53,7 @@ class Search extends Component {
                 )}
                 />
                 <Song
-                    trackInfo={this.state.value}
-                    songsArray={this.props.songs}
+                    song={this.getSong()}
                 />
             </div>
         </div>
