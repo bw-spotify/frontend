@@ -82,21 +82,19 @@ class Song extends Component {
 
   render() {
     const { song } = this.state;
-    console.log("tsss: ", this.state.song.similars)
-
+    console.log("right here:", song)
     let simSong = [];
     if(this.state.song.similars) {
         this.state.song.similars.forEach(s => {
         simSong.push(<p>{s.track_name}</p>)
       })
     }
-    console.log("song stuff: ", song)
     return (
         <div>
           <div className="dataSong">
             <p className="trackInfo">{song.track_name}</p>
             <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
-            <div className="trackID"><p>Track ID: {song.id}</p></div>
+            {/* <div className="trackID"><p>Track ID: {song.id}</p></div> */}
             <div className="trackID"><p>Acousticness: {song.acousticness}</p></div>
             <div className="trackID"><p>Danceability: {song.danceability}</p></div>
             <div className="trackID"><p>Duration in ms: {song.duration_ms}</p></div>
