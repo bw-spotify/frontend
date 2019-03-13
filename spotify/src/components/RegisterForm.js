@@ -18,6 +18,8 @@ class RegisterForm extends React.Component {
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
   handleSubmit = () => {
+    this.props.clearErrors()
+    this.setState({passwordMismatch: true})
     if(this.state.password === this.state.confirm) {
       this.props.register(this.state.username, this.state.password)
     }
