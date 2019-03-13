@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Search.css';
 import { Bar } from 'react-chartjs-2';
 import axiosWithAuth from '../axiosAuth'
+import Loader from 'react-loader-spinner'
 
 class Song extends Component {
     constructor(props) {
@@ -82,50 +83,61 @@ class Song extends Component {
 
   render() {
     const { song } = this.state;
-    console.log("right here:", song)
+    console.log("tsss: ", this.state.song)
+
     let simSong = [];
     if(this.state.song.similars) {
         this.state.song.similars.forEach(s => {
         simSong.push(<p>{s.track_name}</p>)
       })
     }
-    return (
-        <div>
-          <div className="dataSong">
-            <p className="trackInfo">{song.track_name}</p>
-            <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
-            {/* <div className="trackID"><p>Track ID: {song.id}</p></div> */}
-            <div className="trackID"><p>Acousticness: {song.acousticness}</p></div>
-            <div className="trackID"><p>Danceability: {song.danceability}</p></div>
-            <div className="trackID"><p>Duration in ms: {song.duration_ms}</p></div>
-            <div className="trackID"><p>Energy: {song.energy}</p></div>
-            <div className="trackID"><p>Instrumentalness: {song.instrumentalness}</p></div>
-            <div className="trackID"><p>Key: {song.key}</p></div>
-            <div className="trackID"><p>Liveness: {song.liveness}</p></div>
-            <div className="trackID"><p>Loudness: {song.loudness}</p></div>
-            <div className="trackID"><p>Mode: {song.mode}</p></div>
-            <div className="trackID"><p>Speechiness: {song.speechiness}</p></div>
-            <div className="trackID"><p>Tempo: {song.tempo}</p></div>
-            <div className="trackID"><p>Time Signature: {song.time_signature}</p></div>
-            <div className="trackID"><p>Valence: {song.valence}</p></div>
-            <div className="trackID"><p>Popularity: {song.popularity}</p></div>
-            <div className="similar">
-              <p>Similar Songs to {song.track_name}: </p>
-              {simSong}
+    console.log("song stuff: ", song)
+    if(Object.entries(this.state.song).length !== 0) {
+      return (
+          <div>
+            <div className="dataSong">
+              <p className="trackInfo">{song.track_name}</p>
+              <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
+              <div className="trackID"><p>Track ID: {song.id}</p></div>
+              <div className="trackID"><p>Acousticness: {song.acousticness}</p></div>
+              <div className="trackID"><p>Danceability: {song.danceability}</p></div>
+              <div className="trackID"><p>Duration in ms: {song.duration_ms}</p></div>
+              <div className="trackID"><p>Energy: {song.energy}</p></div>
+              <div className="trackID"><p>Instrumentalness: {song.instrumentalness}</p></div>
+              <div className="trackID"><p>Key: {song.key}</p></div>
+              <div className="trackID"><p>Liveness: {song.liveness}</p></div>
+              <div className="trackID"><p>Loudness: {song.loudness}</p></div>
+              <div className="trackID"><p>Mode: {song.mode}</p></div>
+              <div className="trackID"><p>Speechiness: {song.speechiness}</p></div>
+              <div className="trackID"><p>Tempo: {song.tempo}</p></div>
+              <div className="trackID"><p>Time Signature: {song.time_signature}</p></div>
+              <div className="trackID"><p>Valence: {song.valence}</p></div>
+              <div className="trackID"><p>Popularity: {song.popularity}</p></div>
+              <div className="similar">
+                <p>Similar Songs to {song.track_name}: </p>
+                {simSong}
+              </div>
+            </div>
+            <div className="musicChart">
+              <Bar
+                data={this.state.chartData}
+                options={{
+                    legend:{
+                        display: false,
+                    }
+                }}
+              />
             </div>
           </div>
-          <div className="musicChart">
-            <Bar
-              data={this.state.chartData}
-              options={{
-                  legend:{
-                      display: false,
-                  }
-              }}
-            />
+        );
+      }
+      else {
+        return(
+          <div className="spinner">
+            <Loader type="Audio" color="#1db954" height="100" width="100" />
           </div>
-        </div>
-      );
+        )
+      }
     }
   }
 
