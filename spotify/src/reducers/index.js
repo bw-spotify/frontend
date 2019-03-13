@@ -1,4 +1,6 @@
 import {
+  SEARCHING_SONGS,
+  SEARCH_SUCCESS,
   CLEAR_ERRORS,
   LOGGING_IN,
   LOGIN_SUCCESS,
@@ -17,12 +19,25 @@ const initialState = {
   loggingIn: false,
   loggedIn: false,
   songs: [],
+  searchedSongs: [],
+  searchingSongs: false,
   fetchingAllSongs: false,
   error: null
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SEARCH_SUCCESS:
+      return {
+        ...state,
+        searchedSongs: action.payload,
+        searchingSongs: false
+      }
+    case SEARCHING_SONGS:
+      return {
+        ...state,
+        searchingSongs: true
+      }
     case CLEAR_ERRORS:
       return {
         ...state,

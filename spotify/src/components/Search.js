@@ -1,36 +1,45 @@
 import React, { Component } from 'react';
 import Autocomplete from 'react-autocomplete';
-import Song from './Song';
 import './Search.css';
 import { connect } from 'react-redux'
-import { fetchAllSongs } from '../actions'
-import {Link} from 'react-router-dom'
+import { searchSongs } from '../actions'
+import { Link } from 'react-router-dom'
 
 class Search extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            searchedSongs: [],
             value: '' 
           };
     }
 
     componentDidMount() {
-        this.props.fetchAllSongs()
+        
       }
 
-    matchSongs(state, value) {
-        return state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
+  matchSongs(state, value) {
+    return state.track_name.toLowerCase().indexOf(value.toLowerCase()) !== -1
   }
   
-    getSong() {
-        let song = {}
-        this.props.songs.forEach(s => {
-            if(s.track_name === this.state.value) {
-                song = s
-            }
-        })
-        return song
+    // getSong() {
+    //     let song = {}
+    //     this.props.searchedSongs.forEach(s => {
+    //         if(s.track_name === this.state.value) {
+    //             song = s
+    //         }
+    //     })
+    //     return song
+    // }
+
+  handleChange = (e, v) => {
+    this.setState({
+      value: v
+    })
+    if(v.length > 3) {
+      this.props.searchSongs(v)
     }
+  }
 
   render() {
     return (
@@ -41,11 +50,11 @@ class Search extends Component {
                 value={ this.state.value }
                 inputProps={{ id: 'states-autocomplete' }}
                 wrapperStyle={{ position: 'relative', display: 'inline-block' }}
-                items={this.props.songs}
+                items={this.props.searchedSongs}
                 getItemValue={ item => item.track_name }
                 shouldItemRender={ this.matchSongs }
-                onChange={(event, value) => this.setState({ value }) }
-                onSelect={ value => this.setState({ value }) }
+                onChange={(event, value) => this.handleChange(event, value) }
+                // onSelect={ value => this.setState({ value }) }
                 renderMenu={ children => (
                     <div className = "menu">
                         { children }
@@ -54,7 +63,7 @@ class Search extends Component {
                 renderItem={ (item, isHighlighted) => (
                     <div
                       className={`item ${isHighlighted ? 'item-highlighted' : ''}`}
-                      key={ item.track_name } >
+                      key={ item.id } >
                       <Link to={`/songs/${item.id}`}>{ item.track_name }</Link>
                     </div>
                 )}
@@ -70,8 +79,8 @@ class Search extends Component {
 
   const mapStateToProps = state => {
     return {
-      songs: state.songs,
+      searchedSongs: state.searchedSongs,
     }
   }
 
-export default connect(mapStateToProps, { fetchAllSongs })(Search);
+export default connect(mapStateToProps, { searchSongs })(Search);

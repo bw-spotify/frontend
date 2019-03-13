@@ -1,6 +1,8 @@
 import axios from 'axios'
 import axiosWithAuth from '../axiosAuth'
 
+export const SEARCHING_SONGS = 'CLEAR_ERRORS'
+export const SEARCH_SUCCESS = 'LOGGING_IN'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
 export const LOGGING_IN = 'LOGGING_IN'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -76,6 +78,26 @@ export const fetchAllSongs = () => dispatch => {
   .then(res => {
     dispatch({
       type: FETCH_SUCCESS,
+      payload: res.data
+    });
+  })
+  .catch(err => {
+    dispatch({
+      type: FETCH_FAILURE,
+      payload: err
+    });
+  });
+}
+
+export const searchSongs = snippet => dispatch => {
+  console.log('searching songs');
+  dispatch({
+    type: SEARCHING_SONGS
+  });
+  axiosWithAuth().get(`https://bw-spotify-backend.herokuapp.com/api/songs/search?q=${snippet}&page=1&limit=200`)
+  .then(res => {
+    dispatch({
+      type: SEARCH_SUCCESS,
       payload: res.data
     });
   })
