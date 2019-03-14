@@ -23,11 +23,11 @@ class LoginForm extends React.Component {
     return (
       <div className='login-form'>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 500 }}>
+          <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='green' textAlign='center'>
               <Icon name='music' /> Log-in to your account
             </Header>
-            <Form error={this.props.error ? true : false} size='large' onSubmit={this.handleSubmit}>
+            <Form className="form-down" error={this.props.error ? true : false} size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   fluid icon='user'

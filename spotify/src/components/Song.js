@@ -34,12 +34,12 @@ class Song extends Component {
         song.instrumentalness,
         song.key,
         song.liveness,
-        song.loudness,
-        song.mode,
+        // song.loudness,
+        // song.mode,
         song.speechiness,
-        song.time_signature,
-        song.valence,
-        song.similars
+        // song.time_signature,
+        // song.valence,
+        // song.similars
       ]
       return songNum
     }
@@ -53,11 +53,11 @@ class Song extends Component {
             'Instrumentalness',
             'Key',
             'Liveness',
-            'Loudness',
-            'Mode',
+            // 'Loudness',
+            // 'Mode',
             'Speechiness',
-            'Time Signature',
-            'Valence'
+            // 'Time Signature',
+            // 'Valence'
           ],
           datasets: [
               {
@@ -71,10 +71,10 @@ class Song extends Component {
                       'rgba(255, 206, 86, 0.3)',
                       'rgba(255, 255, 51, 0.3)',
                       'rgba(51, 204, 51, 0.3)',
-                      'rgba(75, 192, 192, 0.3)',
-                      'rgba(54, 162, 235, 0.3)',
-                      'rgba(153, 102, 255, 0.3)',
-                      'rgba(51, 0, 102, 0.3)',
+                      // 'rgba(75, 192, 192, 0.3)',
+                      // 'rgba(54, 162, 235, 0.3)',
+                      // 'rgba(153, 102, 255, 0.3)',
+                      // 'rgba(51, 0, 102, 0.3)',
                   ]
               }
           ]
@@ -94,40 +94,49 @@ class Song extends Component {
     console.log("song stuff: ", song)
     if(Object.entries(this.state.song).length !== 0) {
       return (
-          <div>
-            <div className="dataSong">
-              <p className="trackInfo">{song.track_name}</p>
-              <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
-              <div className="trackID"><p className="dataType">Acousticness: </p><p> {song.acousticness}</p></div>
-              <div className="trackID"><p className="dataType">Danceability: </p><p> {song.danceability}</p></div>
-              <div className="trackID"><p className="dataType">Duration in ms: </p><p> {song.duration_ms}</p></div>
-              <div className="trackID"><p className="dataType">Energy: </p><p> {song.energy}</p></div>
-              <div className="trackID"><p className="dataType">Instrumentalness: </p><p> {song.instrumentalness}</p></div>
-              <div className="trackID"><p className="dataType">Key: </p><p> {song.key}</p></div>
-              <div className="trackID"><p className="dataType">Liveness: </p><p> {song.liveness}</p></div>
-              <div className="trackID"><p className="dataType">Loudness: </p><p> {song.loudness}</p></div>
-              <div className="trackID"><p className="dataType">Mode: </p><p> {song.mode}</p></div>
-              <div className="trackID"><p className="dataType">Speechiness: </p><p> {song.speechiness}</p></div>
-              <div className="trackID"><p className="dataType">Tempo: </p><p> {song.tempo}</p></div>
-              <div className="trackID"><p className="dataType">Time Signature: </p><p> {song.time_signature}</p></div>
-              <div className="trackID"><p className="dataType">Valence: </p><p> {song.valence}</p></div>
-              <div className="trackID"><p className="dataType">Popularity: </p><p> {song.popularity}</p></div>
-              <div className="similar">
-                <p className="simName">Similar Songs to {song.track_name}: </p>
-                {simSong}
-              </div>
-            </div>
+        <div>
+          <div className="infoDisplay">
             <div className="musicChart">
               <Bar
                 data={this.state.chartData}
                 options={{
                     legend:{
                         display: false,
-                    }
+                    },
+                    maintainAspectRatio: false,
                 }}
               />
             </div>
+            <div className="dataSong">
+              <div className="dataList">
+                <p className="trackInfo">{song.track_name}</p>
+                <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
+                <div className="trackID"><p className="dataType">Acousticness: </p><p className="limit"> {song.acousticness}</p></div>
+                <div className="trackID"><p className="dataType">Danceability: </p><p className="limit"> {song.danceability}</p></div>
+                {/* <div className="trackID"><p className="dataType">Duration in ms: </p><p> {song.duration_ms}</p></div> */}
+                <div className="trackID"><p className="dataType">Energy: </p><p className="limit"> {song.energy}</p></div>
+                <div className="trackID"><p className="dataType">Instrumentalness: </p><p className="limit"> {song.instrumentalness}</p></div>
+                <div className="trackID"><p className="dataType">Key: </p><p> {song.key}</p></div>
+                <div className="trackID"><p className="dataType">Liveness: </p><p className="limit"> {song.liveness}</p></div>
+                {/* <div className="trackID"><p className="dataType">Loudness: </p><p> {song.loudness}</p></div> */}
+                {/* <div className="trackID"><p className="dataType">Mode: </p><p> {song.mode}</p></div> */}
+                <div className="trackID"><p className="dataType">Speechiness: </p><p className="limit"> {song.speechiness}</p></div>
+                {/* <div className="trackID"><p className="dataType">Tempo: </p><p> {song.tempo}</p></div> */}
+                {/* <div className="trackID"><p className="dataType">Time Signature: </p><p> {song.time_signature}</p></div> */}
+                {/* <div className="trackID"><p className="dataType">Valence: </p><p> {song.valence}</p></div> */}
+                {/* <div className="trackID"><p className="dataType">Popularity: </p><p> {song.popularity}</p></div> */}
+              </div>
+              <div className="songSpace">
+                <div>
+                  <p className="simInfo">Similar Songs</p>
+                </div>
+                <div className="similar">
+                  {simSong}
+                </div>
+              </div>
+            </div>
           </div>
+        </div>
         );
       }
       else {
