@@ -142,6 +142,36 @@ body {
     text-overflow: ellipsis;
   }
 
+  @media (min-width: 1400px) {
+    .trackInfo{
+      font-size: 30px;
+    }
+    .simInfo{
+      font-size: 30px;
+    }
+    .dataType{
+      font-size: 20px;
+    }
+    .limit {
+      font-size: 20px;
+      width: 65px;
+    }
+    .nolimit {
+      font-size: 20px;
+    }
+    .trackID {
+      width: 350px;
+    }
+    .similar {
+      width: 400px;
+      font-size: 20px;
+    }
+    .simInfo {
+      padding-top: 65px;
+    }
+  }
+
+
   @media (max-width: 1200px) {
     .infoDisplay {
       display: flex;
