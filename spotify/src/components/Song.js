@@ -10,19 +10,39 @@ class Song extends Component {
         this.state = {
             chartData: {},
             song: {},
+            loading: true
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
       axiosWithAuth().get(`https://bw-spotify-backend.herokuapp.com/api/songs?id=${this.props.match.params.id}`)
       .then(res => {
         this.setState({
           song: res.data,
-          chartData: this.getChartData(res.data)
+          chartData: this.getChartData(res.data),
+          loading: false
         })
       })
       .catch(err => {
-        console.log('failed')
+        console.log('get songs failed')
+      })
+    }
+
+    // componentWillReceiveProps() {
+    //   this.getSong()
+    // }
+
+    getSong = id => {
+      axiosWithAuth().get(`https://bw-spotify-backend.herokuapp.com/api/songs?id=${id}`)
+      .then(res => {
+        this.setState({
+          song: res.data,
+          chartData: this.getChartData(res.data),
+          loading: false
+        })
+      })
+      .catch(err => {
+        console.log('get songs failed')
       })
     }
 
@@ -85,26 +105,29 @@ class Song extends Component {
     axiosWithAuth().post(`https://bw-spotify-backend.herokuapp.com/api/faves`, {songId: id})
     .then(res => {
       console.log('fav success!')
-      // dispatch({
-      //   type: ADD_FAVE,
-      //   payload: res.data
-      // })
     })
     .catch(err => {
       console.log(err)
     })
   }
 
+  changeSong = id => {
+    this.setState({song: [], loading: true})
+    this.props.history.push(`/songs/${id}`)
+    this.getSong(id)
+  }
+
   render() {
+    console.log('props', this.props)
     const { song } = this.state;
 
-    let simSong = [];
-    if(this.state.song.similars) {
-        this.state.song.similars.forEach((s, i) => {
-        simSong.push(<p key={i}>{s.track_name}</p>)
-      })
-    }
-    if(Object.entries(this.state.song).length !== 0) {
+    // let simSong = [];
+    // if(this.state.song.similars) {
+    //     this.state.song.similars.forEach((s, i) => {
+    //     simSong.push(<p key={i}>{s.track_name}</p>)
+    //   })
+    // }
+    if(Object.entries(this.state.song).length !== 0 && !this.state.loading) {
       return (
         <div>
           <div className="infoDisplay">
@@ -143,10 +166,14 @@ class Song extends Component {
                   <p className="simInfo">Similar Songs</p>
                 </div>
                 <div className="similar">
-                  {simSong}
+                  {this.state.song.similars.map(s => {
+                    // return <Link key={s.id} to={`/songs/${s.id}`} onClick={() => this.setState({song: []})}><p>{s.track_name} by {s.artist_name}</p></Link>
+                    return <p key={s.id} onClick={() => this.changeSong(s.id)}>{s.track_name}</p>
+                  })}
                 </div>
               </div>
             </div>
+            <iframe title="song" src={`https://open.spotify.com/embed/track/${this.state.song.id}`} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
         </div>
         );

@@ -2,7 +2,12 @@ import React from 'react'
 import axiosWithAuth from '../axiosAuth'
 
 class Faves extends React.Component {
-  state = {faves: []}
+  constructor() {
+    super()
+    this.state = {
+      faves: []
+    }
+  }
   componentDidMount() {
     this.getFaves()
   }
