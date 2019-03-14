@@ -27,7 +27,7 @@ class LoginForm extends React.Component {
             <Header as='h2' color='green' textAlign='center'>
               <Icon name='music' /> Log-in to your account
             </Header>
-            <Form className="form-down" error={this.props.error ? true : false} size='large' onSubmit={this.handleSubmit}>
+            <Form className="form-down" error={this.props.loginError ? true : false} size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   fluid icon='user'
