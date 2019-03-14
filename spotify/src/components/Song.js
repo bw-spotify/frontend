@@ -117,23 +117,22 @@ class Song extends Component {
                 Yo, favorite this
               </button>
               <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
-              <div className="trackID"><p>Track ID: {song.id}</p></div>
-              <div className="trackID"><p>Acousticness: {song.acousticness}</p></div>
-              <div className="trackID"><p>Danceability: {song.danceability}</p></div>
-              <div className="trackID"><p>Duration in ms: {song.duration_ms}</p></div>
-              <div className="trackID"><p>Energy: {song.energy}</p></div>
-              <div className="trackID"><p>Instrumentalness: {song.instrumentalness}</p></div>
-              <div className="trackID"><p>Key: {song.key}</p></div>
-              <div className="trackID"><p>Liveness: {song.liveness}</p></div>
-              <div className="trackID"><p>Loudness: {song.loudness}</p></div>
-              <div className="trackID"><p>Mode: {song.mode}</p></div>
-              <div className="trackID"><p>Speechiness: {song.speechiness}</p></div>
-              <div className="trackID"><p>Tempo: {song.tempo}</p></div>
-              <div className="trackID"><p>Time Signature: {song.time_signature}</p></div>
-              <div className="trackID"><p>Valence: {song.valence}</p></div>
-              <div className="trackID"><p>Popularity: {song.popularity}</p></div>
+              <div className="trackID"><p className="dataType">Acousticness: </p><p> {song.acousticness}</p></div>
+              <div className="trackID"><p className="dataType">Danceability: </p><p> {song.danceability}</p></div>
+              <div className="trackID"><p className="dataType">Duration in ms: </p><p> {song.duration_ms}</p></div>
+              <div className="trackID"><p className="dataType">Energy: </p><p> {song.energy}</p></div>
+              <div className="trackID"><p className="dataType">Instrumentalness: </p><p> {song.instrumentalness}</p></div>
+              <div className="trackID"><p className="dataType">Key: </p><p> {song.key}</p></div>
+              <div className="trackID"><p className="dataType">Liveness: </p><p> {song.liveness}</p></div>
+              <div className="trackID"><p className="dataType">Loudness: </p><p> {song.loudness}</p></div>
+              <div className="trackID"><p className="dataType">Mode: </p><p> {song.mode}</p></div>
+              <div className="trackID"><p className="dataType">Speechiness: </p><p> {song.speechiness}</p></div>
+              <div className="trackID"><p className="dataType">Tempo: </p><p> {song.tempo}</p></div>
+              <div className="trackID"><p className="dataType">Time Signature: </p><p> {song.time_signature}</p></div>
+              <div className="trackID"><p className="dataType">Valence: </p><p> {song.valence}</p></div>
+              <div className="trackID"><p className="dataType">Popularity: </p><p> {song.popularity}</p></div>
               <div className="similar">
-                <p>Similar Songs to {song.track_name}: </p>
+                <p className="simName">Similar Songs to {song.track_name}: </p>
                 {simSong}
               </div>
             </div>
@@ -152,8 +151,8 @@ class Song extends Component {
       }
       else {
         return(
-          <div className="spinner">
-            <Loader type="Audio" color="#1db954" height="100" width="100" />
+          <div className="spinnerFlex">
+              <Loader type="Audio" color="#1db954" height="100" width="100" />
           </div>
         )
       }
