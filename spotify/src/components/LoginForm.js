@@ -27,7 +27,7 @@ class LoginForm extends React.Component {
             <Header as='h2' color='green' textAlign='center'>
               <Icon name='music' /> Log-in to your account
             </Header>
-            <Form error={this.props.error ? true : false} size='large' onSubmit={this.handleSubmit}>
+            <Form error={this.props.loginError ? true : false} size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   fluid icon='user'
@@ -67,7 +67,7 @@ class LoginForm extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    error: state.error
+    loginError: state.loginError
   }
 }
 export default connect(mapStateToProps, {login})(LoginForm)

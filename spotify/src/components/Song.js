@@ -3,7 +3,6 @@ import './Search.css';
 import { Bar } from 'react-chartjs-2';
 import axiosWithAuth from '../axiosAuth'
 import Loader from 'react-loader-spinner'
-import {ADD_FAVE} from '../actions'
 
 class Song extends Component {
     constructor(props) {

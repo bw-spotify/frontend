@@ -53,9 +53,6 @@ class Search extends Component {
                   </Link>
                 )}
                 />
-                {/* <Song
-                    song={this.getSong()}
-                /> */}
             </div>
         </div>
       );

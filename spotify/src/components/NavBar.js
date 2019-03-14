@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export default class MenuExampleMenus extends Component {
   constructor(props) {
@@ -19,17 +20,22 @@ export default class MenuExampleMenus extends Component {
   render() {
     console.log('logged in?', this.props.loggedIn)
     // const { activeItem } = this.state
-    let menuItems
     if(this.props.loggedIn) {
-      menuItems = <Menu.Item name='logout' onClick={this.handleLogOut}>Log out</Menu.Item>
+      return (
+        <Menu inverted>
+          <Menu.Item name="faves"><Link to="/">Search</Link></Menu.Item>
+          <Menu.Item name="faves"><Link to="/faves">Favorites</Link></Menu.Item>
+          <Menu.Item name='logout' onClick={this.handleLogOut}>Log out</Menu.Item>
+        </Menu>
+      )
     }
     else {
-      menuItems = <Menu.Item><img src='https://react.semantic-ui.com/logo.png' alt="logo" /></Menu.Item>
+      return (
+        <Menu inverted>
+          <Menu.Item><img src='https://react.semantic-ui.com/logo.png' alt="logo" /></Menu.Item>
+        </Menu>
+      )
     }
-    return (
-      <Menu inverted>
-        {menuItems}
-      </Menu>
-    )
+    
   }
 }

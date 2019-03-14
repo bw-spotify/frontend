@@ -1,5 +1,4 @@
 import React from 'react'
-import axios from 'axios'
 import axiosWithAuth from '../axiosAuth'
 
 class Faves extends React.Component {
@@ -14,7 +13,7 @@ class Faves extends React.Component {
     })
   }
   deleteFav = id => {
-    axiosWithAuth().delete('https://bw-spotify-backend.herokuapp.com/api/faves', {songId: id})
+    axiosWithAuth().delete('https://bw-spotify-backend.herokuapp.com/api/faves', {data: {songId: id}})
     .then(res => {
       this.setState({faves: res.data})
     })

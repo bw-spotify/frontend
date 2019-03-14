@@ -12,10 +12,17 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 export const REGISTERING = 'REGISTERING'
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 export const REGISTER_FAILURE = 'REGISTER_FAILURE'
+export const PASSWORD_MISMATCH = 'PASSWORD_MISMATCH'
 export const FETCHING_SONGS = 'FETCHING_SONGS'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAILURE = 'FAILURE'
 export const LOGOUT = 'LOGOUT'
+
+  export const passwordMismatch = () => dispatch => {
+    dispatch({
+      type: PASSWORD_MISMATCH
+    })
+  }
 
 export const ensureLoggedIn = () => dispatch => {
   dispatch({
