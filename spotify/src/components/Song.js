@@ -97,15 +97,13 @@ class Song extends Component {
 
   render() {
     const { song } = this.state;
-    console.log("tsss: ", this.state.song)
 
     let simSong = [];
     if(this.state.song.similars) {
-        this.state.song.similars.forEach(s => {
-        simSong.push(<p>{s.track_name}</p>)
+        this.state.song.similars.forEach((s, i) => {
+        simSong.push(<p key={i}>{s.track_name}</p>)
       })
     }
-    console.log("song stuff: ", song)
     if(Object.entries(this.state.song).length !== 0) {
       return (
           <div>
