@@ -52,7 +52,7 @@ class Song extends Component {
         song.danceability,
         song.energy,
         song.instrumentalness,
-        song.key,
+        // song.key,
         song.liveness,
         // song.loudness,
         // song.mode,
@@ -71,7 +71,7 @@ class Song extends Component {
             'Danceability',
             'Energy',
             'Instrumentalness',
-            'Key',
+            // 'Key',
             'Liveness',
             // 'Loudness',
             // 'Mode',
@@ -90,7 +90,7 @@ class Song extends Component {
                       'rgba(255, 159, 64, 0.3)',
                       'rgba(255, 206, 86, 0.3)',
                       'rgba(255, 255, 51, 0.3)',
-                      'rgba(51, 204, 51, 0.3)',
+                      // 'rgba(51, 204, 51, 0.3)',
                       // 'rgba(75, 192, 192, 0.3)',
                       // 'rgba(54, 162, 235, 0.3)',
                       // 'rgba(153, 102, 255, 0.3)',
@@ -118,16 +118,37 @@ class Song extends Component {
   }
 
   render() {
-    console.log('props', this.props)
     const { song } = this.state;
-
-    // let simSong = [];
-    // if(this.state.song.similars) {
-    //     this.state.song.similars.forEach((s, i) => {
-    //     simSong.push(<p key={i}>{s.track_name}</p>)
-    //   })
-    // }
+    
     if(Object.entries(this.state.song).length !== 0 && !this.state.loading) {
+      let convert = "";
+      if (this.state.song.key === -1) {
+        convert = "N/A"
+      } else if (this.state.song.key === 0) {
+        convert = "C"
+      } else if(this.state.song.key === 1) {
+        convert = "C# / Db"
+      } else if (this.state.song.key === 2) {
+        convert = "D"
+      } else if (this.state.song.key === 3) {
+        convert = "D# / Eb"
+      } else if (this.state.song.key === 4) {
+        convert = "E"
+      } else if (this.state.song.key === 5) {
+        convert = "F"
+      } else if (this.state.song.key === 6) {
+        convert = "F# / Gb"
+      } else if (this.state.song.key === 7) {
+        convert = "G"
+      } else if (this.state.song.key === 8) {
+        convert = "G# / Ab"
+      } else if (this.state.song.key === 9) {
+        convert = "A"
+      } else if (this.state.song.key === 10) {
+        convert = "A# / Bb"
+      } else if (this.state.song.key === 11) {
+        convert = "B"
+      }
       return (
         <div>
           <div className="infoDisplay">
@@ -145,13 +166,13 @@ class Song extends Component {
             <div className="dataSong">
               <div className="dataList">
                 <p className="trackInfo">{song.track_name}</p>
-                <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
+                <div className="trackID"><p className="dataType">Artist: </p><p className="nolimit"> {song.artist_name}</p></div>
                 <div className="trackID"><p className="dataType">Acousticness: </p><p className="limit"> {song.acousticness}</p></div>
                 <div className="trackID"><p className="dataType">Danceability: </p><p className="limit"> {song.danceability}</p></div>
                 {/* <div className="trackID"><p className="dataType">Duration in ms: </p><p> {song.duration_ms}</p></div> */}
                 <div className="trackID"><p className="dataType">Energy: </p><p className="limit"> {song.energy}</p></div>
                 <div className="trackID"><p className="dataType">Instrumentalness: </p><p className="limit"> {song.instrumentalness}</p></div>
-                <div className="trackID"><p className="dataType">Key: </p><p> {song.key}</p></div>
+                <div className="trackID"><p className="dataType">Key: </p><p className="nolimit"> {convert}</p></div>
                 <div className="trackID"><p className="dataType">Liveness: </p><p className="limit"> {song.liveness}</p></div>
                 {/* <div className="trackID"><p className="dataType">Loudness: </p><p> {song.loudness}</p></div> */}
                 {/* <div className="trackID"><p className="dataType">Mode: </p><p> {song.mode}</p></div> */}
