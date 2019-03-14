@@ -1,4 +1,5 @@
 import {
+  ADD_FAVE,
   SEARCHING_SONGS,
   SEARCH_SUCCESS,
   CLEAR_ERRORS,
@@ -11,7 +12,8 @@ import {
   FETCHING_SONGS,
   FETCH_SUCCESS,
   FETCH_FAILURE,
-  LOGOUT
+  LOGOUT,
+  ALREADY_LOGGED_IN
 } from "../actions";
 
 const initialState = {
@@ -20,6 +22,7 @@ const initialState = {
   loggedIn: false,
   songs: [],
   searchedSongs: [],
+  favs: [],
   searchingSongs: false,
   fetchingAllSongs: false,
   error: null
@@ -27,6 +30,11 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case ALREADY_LOGGED_IN:
+      return {
+        ...state,
+        loggedIn: true
+      }
     case SEARCH_SUCCESS:
       return {
         ...state,

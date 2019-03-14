@@ -3,6 +3,7 @@ import './Search.css';
 import { Bar } from 'react-chartjs-2';
 import axiosWithAuth from '../axiosAuth'
 import Loader from 'react-loader-spinner'
+import {ADD_FAVE} from '../actions'
 
 class Song extends Component {
     constructor(props) {
@@ -81,6 +82,20 @@ class Song extends Component {
       }
   }
 
+  addFave = id => dispatch => {
+    axiosWithAuth().post(`https://bw-spotify-backend.herokuapp.com/api/faves`, {songId: id})
+    .then(res => {
+      console.log('fav success!')
+      // dispatch({
+      //   type: ADD_FAVE,
+      //   payload: res.data
+      // })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   render() {
     const { song } = this.state;
     console.log("tsss: ", this.state.song)
@@ -97,6 +112,10 @@ class Song extends Component {
           <div>
             <div className="dataSong">
               <p className="trackInfo">{song.track_name}</p>
+              <button className="trackID"
+                onClick={this.addFave(this.state.song.id)}>
+                Yo, favorite this
+              </button>
               <div className="trackID"><p className="dataType">Artist: </p><p> {song.artist_name}</p></div>
               <div className="trackID"><p>Track ID: {song.id}</p></div>
               <div className="trackID"><p>Acousticness: {song.acousticness}</p></div>

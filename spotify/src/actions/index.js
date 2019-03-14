@@ -1,6 +1,8 @@
 import axios from 'axios'
 import axiosWithAuth from '../axiosAuth'
 
+export const ALREADY_LOGGED_IN = 'ALREADY_LOGGED_IN'
+export const ADD_FAVE = 'ADD_FAVE'
 export const SEARCHING_SONGS = 'CLEAR_ERRORS'
 export const SEARCH_SUCCESS = 'LOGGING_IN'
 export const CLEAR_ERRORS = 'CLEAR_ERRORS'
@@ -14,6 +16,12 @@ export const FETCHING_SONGS = 'FETCHING_SONGS'
 export const FETCH_SUCCESS = 'FETCH_SUCCESS'
 export const FETCH_FAILURE = 'FAILURE'
 export const LOGOUT = 'LOGOUT'
+
+export const ensureLoggedIn = () => dispatch => {
+  dispatch({
+    type: ALREADY_LOGGED_IN
+  })
+}
 
 export const clearErrors = () => dispatch => {
   dispatch({
