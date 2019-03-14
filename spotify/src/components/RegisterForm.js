@@ -39,11 +39,11 @@ class RegisterForm extends React.Component {
     return (
       <div className='register-form'>
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-          <Grid.Column style={{ maxWidth: 500 }}>
+          <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='green' textAlign='center'>
               <Icon name='music' /> Register your account
             </Header>
-            <Form error size='large' onSubmit={this.handleSubmit}>
+            <Form className="form-down" error size='large' onSubmit={this.handleSubmit}>
               <Segment stacked>
                 <Form.Input
                   // label='Choose a username'
