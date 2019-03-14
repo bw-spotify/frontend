@@ -3,7 +3,11 @@
 }
 
 .login-form, .register-form {
-  margin-top: 100px;
+  padding-top: 15px;
+}
+
+.form-down {
+  padding-top: 100px;
 }
 
 .App-logo {
