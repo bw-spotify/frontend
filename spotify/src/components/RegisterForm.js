@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button, Form, Grid, Header, Message, Segment, Icon } from 'semantic-ui-react'
 import {connect} from 'react-redux'
-import {register, clearErrors} from '../actions'
+import {register, clearErrors, passwordMismatch} from '../actions'
 import {Link} from 'react-router-dom'
 
 class RegisterForm extends React.Component {
@@ -10,22 +10,28 @@ class RegisterForm extends React.Component {
     this.state = {
       username: '',
       password: '',
-      confirm: '',
-      passwordMismatch: false
+      confirm: ''
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearErrors()
   }
 
   handleChange = (e, { name, value }) => this.setState({ [name]: value })
 
+  handlePasswordMismatch = () => {
+    this.props.passwordMismatch()
+  }
+
   handleSubmit = () => {
     this.props.clearErrors()
-    this.setState({passwordMismatch: true})
     if(this.state.password === this.state.confirm) {
       this.props.register(this.state.username, this.state.password)
     }
     else {
-      this.props.clearErrors()
-      this.setState({passwordMismatch: true})
+      // this.props.clearErrors()
+      this.handlePasswordMismatch()
     }
   }
 
@@ -70,13 +76,13 @@ class RegisterForm extends React.Component {
                   name='confirm'
                   value={this.state.confirm}
                 />
-                {this.props.error ?
+                {this.props.usernameExistsError ?
                 <Message
                   error
                   header='That username already exists'
                   content="If you have forgotten your password, we cannot help you with that yet :'( Otherwise, choose a different username, pls"
                 /> : ''}
-                {this.state.passwordMismatch ?
+                {this.props.passwordMismatchError ?
                 <Message
                   error
                   header='Passwords do not match'
@@ -99,8 +105,9 @@ class RegisterForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    error: state.error
+    usernameExistsError: state.usernameExistsError,
+    passwordMismatchError: state.passwordMismatchError
   }
 }
 
-export default connect(mapStateToProps, {register, clearErrors})(RegisterForm)
+export default connect(mapStateToProps, { register, clearErrors, passwordMismatch })(RegisterForm)
