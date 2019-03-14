@@ -11,7 +11,9 @@ import {
   FETCHING_SONGS,
   FETCH_SUCCESS,
   FETCH_FAILURE,
-  LOGOUT
+  LOGOUT,
+  ALREADY_LOGGED_IN,
+  PASSWORD_MISMATCH
 } from "../actions";
 
 const initialState = {
@@ -20,13 +22,27 @@ const initialState = {
   loggedIn: false,
   songs: [],
   searchedSongs: [],
+  favs: [],
   searchingSongs: false,
   fetchingAllSongs: false,
+  loginError: false,
+  passwordMismatchError: false,
+  usernameExistsError: false,
   error: null
 };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
+    case PASSWORD_MISMATCH:
+      return {
+        ...state,
+        passwordMismatchError: true
+      }
+    case ALREADY_LOGGED_IN:
+      return {
+        ...state,
+        loggedIn: true
+      }
     case SEARCH_SUCCESS:
       return {
         ...state,
@@ -41,7 +57,9 @@ const rootReducer = (state = initialState, action) => {
     case CLEAR_ERRORS:
       return {
         ...state,
-        error: null
+        loginError: false,
+        passwordMismatchError: false,
+        usernameExistsError: false
       }
     case LOGOUT:
       return {
@@ -52,39 +70,47 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         loggingIn: true,
-        error: null
+        loginError: false,
+        passwordMismatchError: false,
+        usernameExistsError: false
       }
     case LOGIN_SUCCESS:
       return {
         ...state,
         loggedIn: true,
         loggingIn: false,
-        error: null
+        loginError: false,
+        passwordMismatchError: false,
+        usernameExistsError: false
       }
       case LOGIN_FAILURE:
       return {
         ...state,
         loggingIn: false,
-        error: action.payload
+        loginError: true
       }
       case REGISTERING:
       return {
         ...state,
         registering: true,
-        error: null
+        loginError: false,
+        passwordMismatchError: false,
+        usernameExistsError: false
       }
     case REGISTER_SUCCESS:
       return {
         ...state,
         loggedIn: true,
         registering: false,
-        error: null
+        loginError: false,
+        passwordMismatchError: false,
+        usernameExistsError: false
       }
       case REGISTER_FAILURE:
       return {
         ...state,
         registering: false,
-        error: action.payload
+        usernameExistsError: true
       }
     case FETCHING_SONGS:
       return {

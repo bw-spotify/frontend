@@ -81,6 +81,20 @@ class Song extends Component {
       }
   }
 
+  addFave = id => dispatch => {
+    axiosWithAuth().post(`https://bw-spotify-backend.herokuapp.com/api/faves`, {songId: id})
+    .then(res => {
+      console.log('fav success!')
+      // dispatch({
+      //   type: ADD_FAVE,
+      //   payload: res.data
+      // })
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   render() {
     const { song } = this.state;
     console.log("tsss: ", this.state.song)
