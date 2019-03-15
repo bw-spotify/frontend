@@ -151,7 +151,6 @@ class Song extends Component {
       }
       return (
         <div>
-          <div className="mainTitle"><p className="trackInfo">{song.track_name}</p></div>
           <div className="infoDisplay">
             <div className="musicChart">
               <Bar
@@ -166,7 +165,7 @@ class Song extends Component {
             </div>
             <div className="dataSong">
               <div className="dataList">
-                
+                <div className="mainTitle"><p className="trackInfo">{song.track_name}</p></div>   
                 <div className="trackID"><p className="dataType">Artist: </p><p className="nolimit"> {song.artist_name}</p></div>
                 <div className="trackID"><p className="dataType">Acousticness: </p><p className="limit"> {song.acousticness}</p></div>
                 <div className="trackID"><p className="dataType">Danceability: </p><p className="limit"> {song.danceability}</p></div>
@@ -190,7 +189,7 @@ class Song extends Component {
                 <div className="similar">
                   {this.state.song.similars.map(s => {
                     // return <Link key={s.id} to={`/songs/${s.id}`} onClick={() => this.setState({song: []})}><p>{s.track_name} by {s.artist_name}</p></Link>
-                    return <div><a key={s.id} onClick={() => this.changeSong(s.id)}>{s.track_name}</a></div>
+                    return <div><button className="songButton" key={s.id} onClick={() => this.changeSong(s.id)}>{s.track_name}</button></div>
                   })}
                 </div>
               </div>
