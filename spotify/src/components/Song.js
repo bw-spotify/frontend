@@ -10,19 +10,39 @@ class Song extends Component {
         this.state = {
             chartData: {},
             song: {},
+            loading: true
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
       axiosWithAuth().get(`https://bw-spotify-backend.herokuapp.com/api/songs?id=${this.props.match.params.id}`)
       .then(res => {
         this.setState({
           song: res.data,
-          chartData: this.getChartData(res.data)
+          chartData: this.getChartData(res.data),
+          loading: false
         })
       })
       .catch(err => {
-        console.log('failed')
+        console.log('get songs failed')
+      })
+    }
+
+    // componentWillReceiveProps() {
+    //   this.getSong()
+    // }
+
+    getSong = id => {
+      axiosWithAuth().get(`https://bw-spotify-backend.herokuapp.com/api/songs?id=${id}`)
+      .then(res => {
+        this.setState({
+          song: res.data,
+          chartData: this.getChartData(res.data),
+          loading: false
+        })
+      })
+      .catch(err => {
+        console.log('get songs failed')
       })
     }
 
@@ -85,56 +105,53 @@ class Song extends Component {
     axiosWithAuth().post(`https://bw-spotify-backend.herokuapp.com/api/faves`, {songId: id})
     .then(res => {
       console.log('fav success!')
-      // dispatch({
-      //   type: ADD_FAVE,
-      //   payload: res.data
-      // })
     })
     .catch(err => {
       console.log(err)
     })
   }
 
+  changeSong = id => {
+    this.setState({song: [], loading: true})
+    this.props.history.push(`/songs/${id}`)
+    this.getSong(id)
+  }
+
   render() {
     const { song } = this.state;
     
-    let convert = "";
-    if(this.state.song.key === 1) {
-      convert = "A"
-    } else if (this.state.song.key === 2) {
-      convert = "Bb"
-    } else if (this.state.song.key === 3) {
-      convert = "B"
-    } else if (this.state.song.key === 4) {
-      convert = "C"
-    } else if (this.state.song.key === 5) {
-      convert = "Db"
-    } else if (this.state.song.key === 6) {
-      convert = "D"
-    } else if (this.state.song.key === 7) {
-      convert = "Eb"
-    } else if (this.state.song.key === 8) {
-      convert = "E"
-    } else if (this.state.song.key === 9) {
-      convert = "F"
-    } else if (this.state.song.key === 10) {
-      convert = "Gb"
-    } else if (this.state.song.key === 11) {
-      convert = "G"
-    } else if (this.state.song.key === 12) {
-      convert = "Ab"
-    }
-
-    let simSong = [];
-    if(this.state.song.similars) {
-        this.state.song.similars.forEach(s => {
-        simSong.push(<p>{s.track_name}</p>)
-      })
-    }
-    console.log("song stuff: ", song)
-    if(Object.entries(this.state.song).length !== 0) {
+    if(Object.entries(this.state.song).length !== 0 && !this.state.loading) {
+      let convert = "";
+      if (this.state.song.key === -1) {
+        convert = "N/A"
+      } else if (this.state.song.key === 0) {
+        convert = "C"
+      } else if(this.state.song.key === 1) {
+        convert = "C# / Db"
+      } else if (this.state.song.key === 2) {
+        convert = "D"
+      } else if (this.state.song.key === 3) {
+        convert = "D# / Eb"
+      } else if (this.state.song.key === 4) {
+        convert = "E"
+      } else if (this.state.song.key === 5) {
+        convert = "F"
+      } else if (this.state.song.key === 6) {
+        convert = "F# / Gb"
+      } else if (this.state.song.key === 7) {
+        convert = "G"
+      } else if (this.state.song.key === 8) {
+        convert = "G# / Ab"
+      } else if (this.state.song.key === 9) {
+        convert = "A"
+      } else if (this.state.song.key === 10) {
+        convert = "A# / Bb"
+      } else if (this.state.song.key === 11) {
+        convert = "B"
+      }
       return (
         <div>
+          <div className="mainTitle"><p className="trackInfo">{song.track_name}</p></div>
           <div className="infoDisplay">
             <div className="musicChart">
               <Bar
@@ -149,7 +166,7 @@ class Song extends Component {
             </div>
             <div className="dataSong">
               <div className="dataList">
-                <p className="trackInfo">{song.track_name}</p>
+                
                 <div className="trackID"><p className="dataType">Artist: </p><p className="nolimit"> {song.artist_name}</p></div>
                 <div className="trackID"><p className="dataType">Acousticness: </p><p className="limit"> {song.acousticness}</p></div>
                 <div className="trackID"><p className="dataType">Danceability: </p><p className="limit"> {song.danceability}</p></div>
@@ -171,9 +188,13 @@ class Song extends Component {
                   <p className="simInfo">Similar Songs</p>
                 </div>
                 <div className="similar">
-                  {simSong}
+                  {this.state.song.similars.map(s => {
+                    // return <Link key={s.id} to={`/songs/${s.id}`} onClick={() => this.setState({song: []})}><p>{s.track_name} by {s.artist_name}</p></Link>
+                    return <div><a key={s.id} onClick={() => this.changeSong(s.id)}>{s.track_name}</a></div>
+                  })}
                 </div>
               </div>
+              <div className="iframe"><iframe title="song" src={`https://open.spotify.com/embed/track/${this.state.song.id}`} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>
             </div>
           </div>
         </div>

@@ -43,7 +43,6 @@ export const logout = () => dispatch => {
 }
 
 export const login = (user, pass) => dispatch => {
-  console.log('logging in', user, pass)
   dispatch({
     type: LOGGING_IN
   })
@@ -64,7 +63,6 @@ export const login = (user, pass) => dispatch => {
 }
 
 export const register = (user, pass) => dispatch => {
-  console.log('registering', user, pass)
   dispatch({
     type: REGISTERING
   })
@@ -85,7 +83,6 @@ export const register = (user, pass) => dispatch => {
 }
 
 export const fetchAllSongs = () => dispatch => {
-  console.log('fetching all songs');
   dispatch({
     type: FETCHING_SONGS
   });
@@ -106,7 +103,6 @@ export const fetchAllSongs = () => dispatch => {
 }
 
 export const searchSongs = snippet => dispatch => {
-  console.log('searching songs');
   dispatch({
     type: SEARCHING_SONGS
   });

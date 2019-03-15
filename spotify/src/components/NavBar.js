@@ -24,7 +24,7 @@ export default class MenuExampleMenus extends Component {
       return (
         <Menu inverted>
           <Menu.Item name="faves"><Link to="/">Search</Link></Menu.Item>
-          <Menu.Item name="faves"><Link to="/faves">Favorites</Link></Menu.Item>
+          {/* <Menu.Item name="faves"><Link to="/faves">Favorites</Link></Menu.Item> */}
           <Menu.Item name='logout' onClick={this.handleLogOut}>Log out</Menu.Item>
         </Menu>
       )
