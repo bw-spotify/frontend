@@ -59,7 +59,7 @@ body {
 
   .simInfo {
       color: rgba(255, 255, 255, 0.8);
-      padding-bottom: 12px;
+      padding-bottom: 0px;
       font-size: 20px;
   }
 
@@ -100,6 +100,9 @@ body {
 
   .dataList {
     margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   .dataSong {
@@ -123,6 +126,17 @@ body {
     height: 400px;
   }
 
+  .songButton {
+      background-color: Transparent;
+      background-repeat:no-repeat;
+      border: none;
+      cursor:pointer;
+      overflow: hidden;
+      outline:none;
+      color: #99a4ae;
+      margin: 10px 0;
+  }
+
   .spinnerFlex {
     padding: 20% 0 0 0;
   }
@@ -133,10 +147,11 @@ body {
 
   .mainTitle {
     padding-top: 100px;
+    text-align: center;
   }
 
     .iframe {
-      margin-left: 20px;
+      margin-left: 40px;
     }
 
   .similar a {
@@ -159,6 +174,13 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  @media (max-width: 1777px) {
+    .infoDisplay {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   @media (min-width: 1400px) {
@@ -186,21 +208,25 @@ body {
       font-size: 20px;
     }
     .simInfo {
-      padding-top: 65px;
+      padding-top: 145px;
     }
   }
 
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1416px) {
     .infoDisplay {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 50px;
     }
+    .mainTitle {
+      padding-top: 0px;
+      padding-bottom: 30px;
+    }
   }
 
-  @media(max-width: 800px) {
+  @media(max-width: 998px) {
     .dataSong {
       display: flex;
       flex-direction: column;
