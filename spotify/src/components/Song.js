@@ -151,6 +151,7 @@ class Song extends Component {
       }
       return (
         <div>
+          <div className="mainTitle"><p className="trackInfo">{song.track_name}</p></div>
           <div className="infoDisplay">
             <div className="musicChart">
               <Bar
@@ -165,7 +166,7 @@ class Song extends Component {
             </div>
             <div className="dataSong">
               <div className="dataList">
-                <p className="trackInfo">{song.track_name}</p>
+                
                 <div className="trackID"><p className="dataType">Artist: </p><p className="nolimit"> {song.artist_name}</p></div>
                 <div className="trackID"><p className="dataType">Acousticness: </p><p className="limit"> {song.acousticness}</p></div>
                 <div className="trackID"><p className="dataType">Danceability: </p><p className="limit"> {song.danceability}</p></div>
@@ -189,12 +190,12 @@ class Song extends Component {
                 <div className="similar">
                   {this.state.song.similars.map(s => {
                     // return <Link key={s.id} to={`/songs/${s.id}`} onClick={() => this.setState({song: []})}><p>{s.track_name} by {s.artist_name}</p></Link>
-                    return <p key={s.id} onClick={() => this.changeSong(s.id)}>{s.track_name}</p>
+                    return <div><a key={s.id} onClick={() => this.changeSong(s.id)}>{s.track_name}</a></div>
                   })}
                 </div>
               </div>
+              <div className="iframe"><iframe title="song" src={`https://open.spotify.com/embed/track/${this.state.song.id}`} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe></div>
             </div>
-            <iframe title="song" src={`https://open.spotify.com/embed/track/${this.state.song.id}`} width="300" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           </div>
         </div>
         );
