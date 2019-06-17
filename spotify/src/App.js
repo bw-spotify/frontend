@@ -13,19 +13,19 @@ import Faves from './components/Faves'
 
 class App extends Component {
   componentWillMount() {
-    if (localStorage.getItem('userToken') !== null) {
-      this.props.ensureLoggedIn()
-    }
+    // if (localStorage.getItem('userToken') !== null) {
+    //   this.props.ensureLoggedIn()
+    // }
   }
   render() {
     return (
       <div className="App">
         <NavBar loggedIn={this.props.loggedIn} logout={this.props.logout} />
-        <ProtectedRoute exact path="/" component={Search} />
-        <ProtectedRoute path="/songs/:id" component={Song} />
-        <ProtectedRoute path="/faves" component={Faves} />
+        <Route exact path="/" component={Search} />
+        <Route path="/songs/:id" component={Song} />
+        {/* <ProtectedRoute path="/faves" component={Faves} />
         <Route path="/login" render={() => ( this.props.loggedIn ? <Redirect to="/" /> : <LoginForm /> )} />
-        <Route path="/register" render={() => ( this.props.loggedIn ? <Redirect to="/" /> : <RegisterForm /> )} />
+        <Route path="/register" render={() => ( this.props.loggedIn ? <Redirect to="/" /> : <RegisterForm /> )} /> */}
       </div>
     );
   }
