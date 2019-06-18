@@ -31,7 +31,7 @@ export default class MenuExampleMenus extends Component {
     // }
     // else {
       return (
-        <Menu inverted>
+        <Menu fluid inverted widths={3}>
           <Menu.Item><Icon name="spotify" /><Link to="/">Search</Link></Menu.Item>
         </Menu>
       )

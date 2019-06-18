@@ -28,7 +28,7 @@ class Search extends Component {
 
   render() {
     return (
-        <div>
+        <div id="search">
             <h2 className="searchTitle">Search by Artist or Track Name</h2>
             <div style = {{ marginTop: 50, marginBottom: 50}}>
             <Autocomplete
