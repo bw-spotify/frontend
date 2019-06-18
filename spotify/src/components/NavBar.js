@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 
 export default class MenuExampleMenus extends Component {
@@ -18,24 +18,24 @@ export default class MenuExampleMenus extends Component {
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
-    console.log('logged in?', this.props.loggedIn)
-    // const { activeItem } = this.state
-    if(this.props.loggedIn) {
+    // console.log('logged in?', this.props.loggedIn)
+    // // const { activeItem } = this.state
+    // if(this.props.loggedIn) {
+    //   return (
+    //     <Menu inverted>
+    //       <Menu.Item name="faves"><Link to="/">Search</Link></Menu.Item>
+    //       {/* <Menu.Item name="faves"><Link to="/faves">Favorites</Link></Menu.Item> */}
+    //       <Menu.Item name='logout' onClick={this.handleLogOut}>Log out</Menu.Item>
+    //     </Menu>
+    //   )
+    // }
+    // else {
       return (
         <Menu inverted>
-          <Menu.Item name="faves"><Link to="/">Search</Link></Menu.Item>
-          {/* <Menu.Item name="faves"><Link to="/faves">Favorites</Link></Menu.Item> */}
-          <Menu.Item name='logout' onClick={this.handleLogOut}>Log out</Menu.Item>
+          <Menu.Item><Icon name="spotify" /><Link to="/">Search</Link></Menu.Item>
         </Menu>
       )
-    }
-    else {
-      return (
-        <Menu inverted>
-          <Menu.Item><img src='https://react.semantic-ui.com/logo.png' alt="logo" /></Menu.Item>
-        </Menu>
-      )
-    }
+    // }
     
   }
 }
