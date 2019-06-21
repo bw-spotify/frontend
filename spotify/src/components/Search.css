@@ -3,11 +3,18 @@
   color: #1DB954 !important;
 }
 
+#search {
+  height: 100vh;
+  background-image: url("../edwin-andrade-158050-unsplash.jpg");
+  background-size: cover;
+}
+
 body {
     color: #ffffff;
     font-family: "Proxima Nova", Arial, sans-serif;
     font-weight: 200;
     background-color: #353d45;
+    
   }
   
   .example {
