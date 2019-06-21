@@ -29,8 +29,8 @@ class Search extends Component {
   render() {
     return (
         <div id="search">
-            <h2 className="searchTitle">Search by Artist or Track Name</h2>
-            <div style = {{ marginTop: 50, marginBottom: 50}}>
+            <h2 className="searchTitle">SpotiFinder is a music recommendation engine designed to discover <br></br> the best music you've never heard.</h2>
+            <div className='searchBar' style = {{ marginTop: 50, marginBottom: 50}}>
             <Autocomplete
                 value={ this.state.value }
                 inputProps={{ id: 'states-autocomplete' }}
@@ -53,6 +53,8 @@ class Search extends Component {
                   </Link>
                 )}
                 />
+               <p className="searchText">Search by <em>Artist</em> or <em>Track Name</em></p>
+
             </div>
         </div>
       );

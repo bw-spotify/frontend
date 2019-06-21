@@ -1,5 +1,5 @@
 .ui.menu {
-  font-size: 30px;
+  font-size: 5px;
   color: #1DB954 !important;
 }
 
@@ -37,7 +37,8 @@ body {
     position: absolute;
     box-sizing: border-box;
     width: 100%;
-    border: 1px solid #cccccc;
+    /* border: 1px solid #cccccc;
+    border-radius: 3px; */
   }
   
   .item {
@@ -46,6 +47,7 @@ body {
     color: #333;
     background-color: #ffffff;
     font-size: 20px;
+    /* border-radius: 3px; */
   }
   
   .item-highlighted {
@@ -61,9 +63,26 @@ body {
 
   .searchTitle {
       color: #ffffff;
-      padding-top: 140px;
+      text-shadow: 2px 2px 4px #000000;
+      padding-top: 300px;
+      padding-bottom: 50px;
       /* margin-top: 30px; */
       font-size: 40px;
+  }
+
+  .searchText {
+    color: #ffffff;
+    font-size: 17px;
+    /* font-style: italic; */
+    padding-top: 10px;
+    text-shadow: 2px 2px 4px #000000;
+  }
+
+  .searchText em {
+    color: #1db954;
+    /* font-style: italic; */
+    font-style: normal;
+    text-shadow: 2px 2px 4px #000000;
   }
 
   .trackInfo {
@@ -126,11 +145,16 @@ body {
   }
 
   #states-autocomplete{
+    /* This is the search bar on the main page */
     width: 340px;
-    height: 30px;
+    height: 40px;
+    background-color: rgba(30, 215, 96, 0.45);
+    border:1px;
     text-align: center;
     font-size: 20px;
-    /* border-radius: 20px; */
+    border-radius: 30px;
+    box-shadow: inset 1px 1px 1px #000000;
+
   }
 
   .musicChart {
