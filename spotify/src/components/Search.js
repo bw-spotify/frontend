@@ -10,7 +10,9 @@ class Search extends Component {
         super(props);
         this.state = {
             searchedSongs: [],
-            value: '' 
+            label: 'blah',
+            placeholder: 'bl2',
+            value: ''   // prefil for the form 'Search by Artist or Track Name'
           };
     }
 
@@ -30,8 +32,12 @@ class Search extends Component {
     return (
         <div id="search">
             <h2 className="searchTitle">SpotiFinder is a music recommendation engine designed to discover <br></br> the best music you've never heard.</h2>
-            <div className='searchBar' style = {{ marginTop: 50, marginBottom: 50}}>
+            <div className='searchBar'>
+              <form className='form' style = {{ marginTop: 50, marginBottom: 50 }}> 
+                <label style = {{ color: 'white', fontStyle:'italic'}}>Search by Artist or Track Name...</label>
+                {/* , fontWeight: 'bold' */}
             <Autocomplete
+                // Autocomplete references a default react-autocomplete node module.
                 value={ this.state.value }
                 inputProps={{ id: 'states-autocomplete' }}
                 wrapperStyle={{ position: 'relative', display: 'inline-block' }}
@@ -53,7 +59,8 @@ class Search extends Component {
                   </Link>
                 )}
                 />
-               <p className="searchText">Search by <em>Artist</em> or <em>Track Name</em></p>
+                </form>
+               {/* <p className="searchText">Search by <em>Artist</em> or <em>Track Name</em></p> */}
 
             </div>
         </div>

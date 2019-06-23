@@ -2,14 +2,14 @@ import React, { Component } from 'react'
 import './App.css'
 import { connect } from 'react-redux'
 import { fetchAllSongs, login, register, logout, ensureLoggedIn } from './actions'
-import { Route, Redirect, withRouter } from 'react-router-dom'
-import LoginForm from './components/LoginForm'
-import RegisterForm from './components/RegisterForm'
-import ProtectedRoute from './components/ProtectedRoute'
+import { Route, withRouter } from 'react-router-dom' // Redirect was imported but never used
+// import LoginForm from './components/LoginForm'
+// import RegisterForm from './components/RegisterForm'
+// import ProtectedRoute from './components/ProtectedRoute'
+// import Faves from './components/Faves'
 import Song from './components/Song'
 import Search from './components/Search'
 import NavBar from './components/NavBar'
-import Faves from './components/Faves'
 
 class App extends Component {
   componentWillMount() {
@@ -30,6 +30,7 @@ class App extends Component {
     );
   }
 }
+
 
 const mapStateToProps = state => {
   return {
