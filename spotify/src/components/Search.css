@@ -251,6 +251,14 @@ body {
     text-overflow: ellipsis;
   }
 
+  .menu-item {
+    font-size: 2rem;
+  }
+
+  .menu-bar {
+    margin-bottom: 0 !important;
+  }
+
 
   @media (max-width: 1777px) {
     .infoDisplay {
