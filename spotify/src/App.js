@@ -21,7 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar loggedIn={this.props.loggedIn} logout={this.props.logout} />
-        <Route exact path="/" component={Search} />
+        <Route exact path="/" component={Search} placeholder={this.props.placeholderText} />
         <Route path="/songs/:id" component={Song} />
         {/* <ProtectedRoute path="/faves" component={Faves} />
         <Route path="/login" render={() => ( this.props.loggedIn ? <Redirect to="/" /> : <LoginForm /> )} />

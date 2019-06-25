@@ -8,16 +8,53 @@
   /* font-size: 25px; */
   /* color: #1DB954 !important; */
 } 
+.search {
+    background-color: rgba(30, 215, 96, 0.45);
+   transition: 0.3s all;
+}
+
+h2 {
+    background-color: rgba(30, 215, 96, 0.45);
+   transition: 0.3s all;
+}
 
 #search {
   height: 100vh;
   background-image: url("../edwin-andrade-158050-unsplash.jpg");
   background-size: cover;
+
 }
+
+/* .form {
+  background-color: rgba(30, 215, 96, 0.45);
+  transition: 0.3s all;
+} */
+
+/* .search   {
+  background-color: rgba(30, 215, 96, 0.45);
+ transition: 0.3s all;
+} */
+
+
+/* .searchTitle {
+  background-color: rgba(30, 215, 96, 0.45);
+  transition: 0.3s all;
+}
+
+html {
+  background-color: rgba(30, 215, 96, 0.45);
+  transition: 0.3s all;
+}
+
+.h2-searchTitle {
+    background-color: rgba(30, 215, 96, 0.45);
+   transition: 0.3s all;
+} */
 
 #song{
   height: 100vh;
   background-image: url("../edwin-andrade-158050-unsplash.jpg");
+  transition: 0.3s all;
 }
 
 body {
@@ -45,13 +82,17 @@ body {
     border-radius: 3px;
   } */
 
+  .input {
+    width: 500px;
+  }
+
   #states-autocomplete{
     /* This is the search bar on the main page */
     /* A BASIC VERSION:  */
     /* border: 1px solid #999; */
     /* padding: 0.5rem; */
     /* border: none; */
-    width: 300px;  
+    /* width: 300px;  
     width: 450px;
     height: 40px;
     color: #ffffff;
@@ -60,8 +101,20 @@ body {
     background-color: rgba(30, 215, 96, 0.45);
     border:1px;
     border-radius: 30px;
-    box-shadow: inset 1px 1px 1px #000000;
-  } 
+    box-shadow: inset 1px 1px 1px #000000; */
+    
+      width: 400px;
+      height: 56px;
+      border-radius: 4px;
+      position: relative;
+      background-color: rgba(255,255,255,0.3);
+      transition: 0.3s all;
+    }
+    .states-autocomplete:hover {
+      background-color: rgba(255, 255, 255, 0.45);
+      box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+    }
+   
 
   .menu {
     /* border-radius: '3px';
@@ -257,6 +310,11 @@ body {
 
   .menu-bar {
     margin-bottom: 0 !important;
+  }
+
+  .nav {
+    background-color: rgba(30, 215, 96, 0.45);
+    transition: 0.3s all;
   }
 
 
