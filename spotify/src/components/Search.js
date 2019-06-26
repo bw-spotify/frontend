@@ -11,8 +11,8 @@ class Search extends Component {
         this.state = {
             searchedSongs: [],
             label: 'blah',
-            placeholder: 'test',
-            value: 'Search by Artist or Track Name...'   // prefil for the form 'Search by Artist or Track Name'
+            placeholder: 'bl2',
+            value: ''   // prefil for the form 'Search by Artist or Track Name'
           };
     }
 
@@ -33,8 +33,8 @@ class Search extends Component {
         <div id="search">
             <h2 className="searchTitle">SpotiFinder is a music recommendation engine designed to discover <br></br> the best music you've never heard.</h2>
             <div className='searchBar'>
-              <form className='form' > 
-                {/* <label style = {{ color: 'white', fontStyle:'italic'}}>Search by Artist or Track Name...</label> */}
+              <form className='form' style = {{ marginTop: 50, marginBottom: 50 }}> 
+                <label style = {{ color: 'white', fontStyle:'italic'}}>Search by Artist or Track Name...</label>
                 {/* , fontWeight: 'bold' */}
             <Autocomplete
                 // Autocomplete references a default react-autocomplete node module.
@@ -44,11 +44,10 @@ class Search extends Component {
                 items={this.props.searchedSongs || []}
                 getItemValue={ item => item.track_name }
                 shouldItemRender={ this.matchSongs }
-                placeholder={'this.props.placeholderText'}
                 onChange={(event, value) => this.handleChange(event, value) }
                 // onSelect={ value => this.setState({ value }) }
                 renderMenu={ children => (
-                    <div className = "menu" >
+                    <div className = "menu">
                         { children }
                     </div>
                 )}
